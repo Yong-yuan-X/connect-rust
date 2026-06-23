@@ -73,6 +73,12 @@ increment the patch version.
   (The 0.7.0 [#140] entry's "matching connect-go" parenthetical was also
   inaccurate as to the code, but correct that connect-go is the reference:
   it returns `internal` for this path.)
+- **Connect Unary-Get query parameters are emitted in the spec-recommended
+  order** ([#167]): `connect`, `base64`, `compression`, `encoding`, `message`.
+  Servers must accept any order, so this is not a wire-compatibility change;
+  the recommended order keeps the variable-length `message` last so the URL
+  prefix is stable for shared caches. Aligns with the order check added to
+  the upstream conformance suite.
 - **Unsupported gRPC/gRPC-Web message codecs return `unimplemented`**
   ([#180]). A request with a valid `application/grpc` / `application/grpc-web`
   prefix but a codec the server does not speak (for example
@@ -93,6 +99,7 @@ increment the patch version.
 [#151]: https://github.com/anthropics/connect-rust/issues/151
 [#163]: https://github.com/anthropics/connect-rust/pull/163
 [#164]: https://github.com/anthropics/connect-rust/pull/164
+[#167]: https://github.com/anthropics/connect-rust/pull/167
 [#168]: https://github.com/anthropics/connect-rust/pull/168
 [#172]: https://github.com/anthropics/connect-rust/pull/172
 [#180]: https://github.com/anthropics/connect-rust/issues/180
